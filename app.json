@@ -18,10 +18,19 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.roldev22.ClimatGreen"
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "extra": {
+      "eas": {
+        "projectId": "5da20ea1-25cc-457a-aaee-aae6fb2c0f2f"
+      }
+    },
+    "plugins": [
+      "expo-font"
+    ]
   }
 }
