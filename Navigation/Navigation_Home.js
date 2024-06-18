@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Header } from "react-native";
 import "react-native-gesture-handler";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
@@ -8,10 +8,11 @@ import { FontAwesome } from "@expo/vector-icons";
 import { MaterialIcons } from "@expo/vector-icons";
 import { View, StyleSheet } from "react-native";
 
-import Page_Principal from "../Pages/Page_Principal";
-import Page_Calendario from "../Pages/Page_Calendario";
-import Page_Info from "../Pages/Page_Info";
-import Page_Guardados from "../Pages/Page_Guardados";
+import Page_Principal from "../Pages/Pages_Inside/Page_Principal";
+import Page_Calendario from "../Pages/Pages_Inside/Page_Calendario";
+import Page_Info from "../Pages/Pages_Inside/Page_Info";
+import Page_Guardados from "../Pages/Pages_Inside/Page_Guardados";
+import HeaderC from "../Components/HeaderC";
 
 const TabNav = createBottomTabNavigator();
 
