@@ -19,8 +19,8 @@ const iconLog = require("../Images/IconLogin.png");
 export default function Page_Login() {
   const navigation = useNavigation();
 
-  const [isEnabled, setIsEnabled] = useState(false);
-  const toggleSwitch = () => setIsEnabled((previousState) => !previousState);
+  const [recordar, setRecordar] = useState(false);
+  const toggleSwitch = () => setRecordar((previousState) => !previousState);
 
   return (
     <ImageBackground source={bgImageP} style={styles.bgStyle}>
@@ -75,9 +75,9 @@ export default function Page_Login() {
                 <Text style={styles.links}>Recordar Usuario</Text>
                 <Switch
                   trackColor={{ false: "#4D774E", true: "#4D774E" }}
-                  thumbColor={isEnabled ? "#00FF75" : "#808080"}
+                  thumbColor={recordar ? "#00FF75" : "#808080"}
                   onValueChange={toggleSwitch}
-                  value={isEnabled}
+                  value={recordar}
                   style={styles.swicth}
                 />
               </View>

@@ -76,7 +76,6 @@ export default function Calendario() {
   useEffect(() => {
     const getNoticias = async (fecha) => {
       try {
-        console.log(`Fetching documents for date: ${fecha}`);
         const docRef = doc(db, "Dias", fecha);
         const noticiasCollectionRef = collection(docRef, "Noticias");
         const noticiasSnapshot = await getDocs(noticiasCollectionRef);
@@ -113,7 +112,7 @@ export default function Calendario() {
       const docRef = doc(db, "NoticiaLike", likedId);
       await deleteDoc(docRef)
         .then(() => {
-          console.log("Document successfully deleted!");
+          console.log("Documento eliminado con exito");
           setLiked((prevLiked) => {
             const updatedLiked = { ...prevLiked };
             delete updatedLiked[id];
@@ -121,20 +120,20 @@ export default function Calendario() {
           });
         })
         .catch((error) => {
-          console.error("Error removing document: ", error);
+          console.error("Error al eliminar el documento: ", error);
         });
     } else {
       // Añadir evento a la colección 'NoticiaLike'
       await addDoc(collection(db, "NoticiaLike"), noticia)
         .then((docRef) => {
-          console.log("Document written with ID: ", docRef.id);
+          console.log("Documento gardado con ID: ", docRef.id);
           setLiked((prevLiked) => ({
             ...prevLiked,
             [id]: docRef.id,
           }));
         })
         .catch((error) => {
-          console.error("Error adding document: ", error);
+          console.error("Error al guardar el documento: ", error);
         });
     }
   };
