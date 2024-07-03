@@ -8,22 +8,17 @@ import {
   TouchableHighlight,
   TouchableOpacity,
 } from "react-native";
-import { useNavigation } from "@react-navigation/native";
+
 import HeaderC from "../../Components/HeaderC";
+import Calendario from "../../Components/Calendario";
 
 export default function Page_Calendario() {
-  const navigation = useNavigation();
   const tittle = "Calendario";
   return (
     <View style={styles.container}>
       <HeaderC {...{ text: tittle }} />
       <View style={styles.containerBody}>
-        <Text>HOLA DESDE CALENDARIO</Text>
-        <TouchableHighlight>
-          <Text onPress={() => navigation.navigate("Inicio")}>
-            Volver a Inicio
-          </Text>
-        </TouchableHighlight>
+        <Calendario />
       </View>
     </View>
   );

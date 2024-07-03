@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   View,
   Text,
@@ -16,21 +16,40 @@ import Checkbox from "expo-checkbox";
 const bgImageP = require("../Images/bgPages.png");
 const iconLog = require("../Images/regis.png");
 
-const countries = [
-  "Alemania",
-  "Argentina",
-  "Brasil",
-  "Colombia",
-  "Costa Rica",
-  "Perú",
-  "Ecuador",
-  "Venezuela",
-];
 export default function Page_Registro() {
   const navigation = useNavigation();
   const [selectedGender, setSelectedGender] = useState("Masc");
   const [selectedCountry, setSelectedCountry] = useState("");
   const [termsAccepted, setTermsAccepted] = useState(false);
+  const [countries, setCountries] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  // Función para obtener los países de la API
+  const getCountries = async () => {
+    try {
+      const response = await fetch("https://restcountries.com/v3.1/all"); // datos de la API
+      const json = await response.json(); // Parseando la respuesta JSON
+      const countryNames = json.map((country) => country.name.common); // nombres de los países
+      setCountries(countryNames.sort()); // Ordenando de los paises y su estado
+    } catch (error) {
+      console.error("Error fetching countries: ", error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  // useEffect para obtener los países cuando el componente se monta
+  useEffect(() => {
+    getCountries();
+  }, []);
+
+  if (loading) {
+    return (
+      <View style={styles.loadingContainer}>
+        <Text>Loading...</Text>
+      </View>
+    );
+  }
 
   return (
     <ImageBackground source={bgImageP} style={styles.bgStyle}>
@@ -181,6 +200,7 @@ export default function Page_Registro() {
     </ImageBackground>
   );
 }
+
 const styles = StyleSheet.create({
   bgStyle: {
     width: "100%",
@@ -239,6 +259,7 @@ const styles = StyleSheet.create({
   bodyForm: {
     width: "85%",
     height: "92%",
+
     backgroundColor: "#fff",
   },
   viewReturn: {
@@ -400,5 +421,10 @@ const styles = StyleSheet.create({
     fontFamily: "RedRose_400Regular",
     paddingTop: 5,
     color: "#fff",
+  },
+  loadingContainer: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
   },
 });

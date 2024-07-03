@@ -31,10 +31,12 @@ function TabsHome() {
           justifyContent: "center",
           paddingTop: 7,
         },
+
         tabBarIcon: ({ focused, color, size }) => {
+          // Configuración de los iconos de la barra de pestañas
           let iconName;
           let IconComponent;
-
+          // Asignar iconos específicos según el nombre de la ruta
           switch (route.name) {
             case "Page_Principal":
               iconName = "home";
@@ -61,13 +63,13 @@ function TabsHome() {
             <View
               style={[
                 styles.iconContainer,
-                focused && styles.activeIconContainer,
+                focused && styles.activeIconContainer, // Estilo adicional para el icono activo
               ]}
             >
               <IconComponent
                 name={iconName}
                 size={45}
-                color={focused ? "#00FF75" : "white"}
+                color={focused ? "#00FF75" : "white"} // Color del icono según su estado
               />
             </View>
           );
